@@ -1,6 +1,5 @@
 App.notify = App.cable.subscriptions.create "NotifyChannel",
   connected: ->
-    console.log "Hello"
     # Called when the subscription is ready for use on the server
 
   disconnected: ->
