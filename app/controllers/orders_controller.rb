@@ -30,7 +30,7 @@ if current_user
         puts @invitor.name
         @notify = Notification.create(message:"#{@joiner.name} has accepted your Invitation",from:@joiner.name ,typ:"orderOwner",orderId: orderid)
         UserNotification.create(user_id: @invitor.id,notification_id: @notify.id)
-        ActionCable.server.broadcast "notify_channel_#{@invitor.id}", @notify
+#        ActionCable.server.broadcast "notify_channel_#{@invitor.id}", @notify
         puts ""
 
 
@@ -38,7 +38,7 @@ if current_user
           @notify = Notification.create(message:"#{@joiner.name} accepted #{@invitor.name} Invitation",from:@joiner.name ,typ:"join",orderId: orderid)
           #               # puts @notify
           UserNotification.create(user_id: user[1],notification_id: @notify.id).save
-          ActionCable.server.broadcast "notify_channel_#{user[1]}", @notify
+#          ActionCable.server.broadcast "notify_channel_#{user[1]}", @notify
 
         end
 
@@ -125,7 +125,7 @@ if current_user
         @notify = Notification.create(message:"#{current_user.name} Invites All  The #{@isGroup.name} group Member",from:current_user.name ,typ:"invite",orderId:@order.id)
                       # puts @notify
         UserNotification.create(user_id: f[0],notification_id: @notify.id).save
-        ActionCable.server.broadcast "notify_channel_#{f[0]}", @notify
+        #ActionCable.server.broadcast "notify_channel_#{f[0]}", @notify
 
       end
 
@@ -149,7 +149,7 @@ if current_user
           @notify = Notification.create(message:"#{current_user.name} Invites You to join the order",from:current_user.name ,typ:"invite",orderId:@order.id)
                       # puts @notify
           UserNotification.create(user_id: @isUser.id,notification_id: @notify.id).save
-          ActionCable.server.broadcast "notify_channel_#{@isUser.id}", @notify
+#          ActionCable.server.broadcast "notify_channel_#{@isUser.id}", @notify
 
         end
        end
@@ -172,7 +172,7 @@ if current_user
               @notify = Notification.create(message:"#{current_user.name} Invites You to join the order ",from:current_user.name ,typ:"invite",orderId:@order.id)
                             # puts @notify
               UserNotification.create(user_id: f,notification_id: @notify.id)
-              ActionCable.server.broadcast "notify_channel_#{f}", @notify
+ #             ActionCable.server.broadcast "notify_channel_#{f}", @notify
 
       end
           # end
@@ -206,7 +206,7 @@ if current_user
                     # puts @notify
 
       UserNotification.create(user_id: f.friend_id,notification_id: @notify.id)
-      ActionCable.server.broadcast "notify_channel_#{f.friend_id}", @notify
+  #    ActionCable.server.broadcast "notify_channel_#{f.friend_id}", @notify
     end
     # respond_to do |format|
     #   if @order.update(order_params)
@@ -233,7 +233,7 @@ if current_user
       print("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy")
       @notify = Notification.create(message:"#{current_user.name} has canceled his order",from:current_user.name ,typ:"cancel",orderId:id)
       UserNotification.create(user_id: f.friend_id,notification_id: @notify.id)
-      ActionCable.server.broadcast "notify_channel_#{f.friend_id}", @notify
+   #   ActionCable.server.broadcast "notify_channel_#{f.friend_id}", @notify
     end
     FriendOrder.where(order_id:@order.id).destroy_all
     Item.where(order_id:@order.id).destroy_all
