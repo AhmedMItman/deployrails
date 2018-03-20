@@ -15,18 +15,6 @@
 
   </head>
   <body>
-    <% unless current_user %>
-
-  <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
-<%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
-
-<% else %>
-
-<!--   <%= current_user[:name] %>
-
-  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
- -->
-<% end %>
 
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -79,7 +67,7 @@
                           <% elsif  notification[3] == "finished" %>
                             <span class="notification-text"><%= notification[1] %></span> <a class="notification-link notification-invite" href="/orders/<%= notification[4] %>" orderid="<%= notification[4] %>">View</a>
                             <% elsif  notification[3] == "orderOwner" %>
-                            <span class="notification-text"><%= notification[1] %></span> <a class="notification-link notification-invite" href="/orders/<%= notification[4] %>" orderid="<%= notification[4] %>">View</a>                            
+                            <span class="notification-text"><%= notification[1] %></span> <a class="notification-link notification-invite" href="/orders/<%= notification[4] %>" orderid="<%= notification[4] %>">View</a>
                           <% end %>
                           <small class="text-muted msg-time"><i class="fa fa-clock-o"></i> <span class="notification-date"><%= notification[5] %></span></small>
                         </div>
